@@ -1,4 +1,5 @@
 import { Briefcase } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
 
 const experiences = [
   {
@@ -37,46 +38,48 @@ const ExperienceSection = () => {
   return (
     <section id="experience" className="section-padding">
       <div className="container">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-          <span className="text-primary">03.</span> Experience
-        </h2>
-        <div className="w-16 h-0.5 bg-primary mb-12" />
+        <AnimatedSection>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-primary">03.</span> Experience
+          </h2>
+          <div className="w-16 h-0.5 bg-primary mb-12" />
+        </AnimatedSection>
 
         <div className="relative">
-          {/* Timeline line */}
           <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-border" />
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
-              <div key={index} className="relative pl-12 md:pl-16">
-                {/* Timeline dot */}
-                <div className="absolute left-2.5 md:left-4.5 top-1 w-3 h-3 rounded-full bg-primary border-2 border-background" />
+              <AnimatedSection key={index} delay={index * 0.15}>
+                <div className="relative pl-12 md:pl-16">
+                  <div className="absolute left-2.5 md:left-4.5 top-1 w-3 h-3 rounded-full bg-primary border-2 border-background" />
 
-                <div className="p-6 rounded-lg bg-card border border-border hover:border-primary/30 transition-all">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                    <div>
-                      <h3 className="font-heading text-base font-bold text-foreground">
-                        {exp.role}
-                      </h3>
-                      <p className="text-primary text-sm flex items-center gap-2">
-                        <Briefcase size={14} />
-                        {exp.company}
-                      </p>
+                  <div className="p-6 rounded-lg bg-card border border-border hover:border-primary/30 transition-all">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                      <div>
+                        <h3 className="font-heading text-base font-bold text-foreground">
+                          {exp.role}
+                        </h3>
+                        <p className="text-primary text-sm flex items-center gap-2">
+                          <Briefcase size={14} />
+                          {exp.company}
+                        </p>
+                      </div>
+                      <span className="text-xs text-muted-foreground font-heading mt-1 md:mt-0">
+                        {exp.period}
+                      </span>
                     </div>
-                    <span className="text-xs text-muted-foreground font-heading mt-1 md:mt-0">
-                      {exp.period}
-                    </span>
+                    <ul className="space-y-2">
+                      {exp.points.map((point, i) => (
+                        <li key={i} className="text-sm text-muted-foreground flex gap-2">
+                          <span className="text-primary mt-1 shrink-0">▹</span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="space-y-2">
-                    {exp.points.map((point, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex gap-2">
-                        <span className="text-primary mt-1 shrink-0">▹</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
+              </AnimatedSection>
             ))}
           </div>
         </div>
