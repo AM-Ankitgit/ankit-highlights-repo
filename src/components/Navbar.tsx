@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 
 const navItems = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -20,18 +21,28 @@ const Navbar = () => {
         </a>
 
         {/* Desktop */}
-        <ul className="hidden md:flex gap-8">
-          {navItems.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden md:flex items-center gap-8">
+          <ul className="flex gap-8">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/resume-ankit-mahalle.pdf"
+            download
+            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all font-medium text-xs"
+          >
+            <Download size={14} />
+            Resume
+          </a>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -57,6 +68,17 @@ const Navbar = () => {
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href="/resume-ankit-mahalle.pdf"
+                download
+                className="inline-flex items-center gap-1.5 text-sm text-primary font-medium"
+                onClick={() => setOpen(false)}
+              >
+                <Download size={14} />
+                Download Resume
+              </a>
+            </li>
           </ul>
         </div>
       )}

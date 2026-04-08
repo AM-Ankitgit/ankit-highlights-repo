@@ -1,4 +1,5 @@
 import { ExternalLink, Github } from "lucide-react";
+import AnimatedSection from "./AnimatedSection";
 
 const projects = [
   {
@@ -55,57 +56,60 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="section-padding bg-card/50">
       <div className="container">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-          <span className="text-primary">04.</span> Projects
-        </h2>
-        <div className="w-16 h-0.5 bg-primary mb-12" />
+        <AnimatedSection>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-primary">04.</span> Projects
+          </h2>
+          <div className="w-16 h-0.5 bg-primary mb-12" />
+        </AnimatedSection>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <div
-              key={project.title}
-              className="group p-6 rounded-lg bg-background border border-border hover:border-primary/40 hover:glow-border transition-all"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="font-heading text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-snug pr-4">
-                  {project.title}
-                </h3>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors shrink-0"
-                >
-                  <Github size={18} />
-                </a>
-              </div>
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-1 text-xs rounded bg-primary/10 text-primary font-medium"
+          {projects.map((project, index) => (
+            <AnimatedSection key={project.title} delay={index * 0.08}>
+              <div className="group p-6 rounded-lg bg-background border border-border hover:border-primary/40 hover:glow-border transition-all h-full">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="font-heading text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-snug pr-4">
+                    {project.title}
+                  </h3>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors shrink-0"
                   >
-                    {tag}
-                  </span>
-                ))}
+                    <Github size={18} />
+                  </a>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-1 text-xs rounded bg-primary/10 text-primary font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
 
-        <div className="text-center mt-10">
-          <a
-            href="https://github.com/AM-Ankitgit?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all font-medium text-sm"
-          >
-            View All Projects <ExternalLink size={14} />
-          </a>
-        </div>
+        <AnimatedSection delay={0.3}>
+          <div className="text-center mt-10">
+            <a
+              href="https://github.com/AM-Ankitgit?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all font-medium text-sm"
+            >
+              View All Projects <ExternalLink size={14} />
+            </a>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );

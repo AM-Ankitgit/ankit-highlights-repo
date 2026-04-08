@@ -1,5 +1,7 @@
-import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowDown, Download } from "lucide-react";
+import { motion } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import profileAvatar from "@/assets/profile-avatar.png";
 
 const HeroSection = () => {
   return (
@@ -15,7 +17,27 @@ const HeroSection = () => {
       </div>
 
       <div className="relative container text-center">
-        <div className="animate-fade-in-up">
+        {/* Avatar */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="mb-6"
+        >
+          <img
+            src={profileAvatar}
+            alt="Ankit Mahalle"
+            width={120}
+            height={120}
+            className="mx-auto rounded-full border-2 border-primary/50 shadow-lg shadow-primary/20"
+          />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <p className="font-heading text-primary text-sm tracking-[0.3em] uppercase mb-4">
             Hello, I'm
           </p>
@@ -29,6 +51,25 @@ const HeroSection = () => {
             <span className="text-primary font-medium">Generative AI</span>{" "}
             systems with 3+ years of experience building production-grade AI architectures.
           </p>
+
+          {/* CTA buttons */}
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:opacity-90 transition-all font-medium text-sm"
+            >
+              <Mail size={16} />
+              Get In Touch
+            </a>
+            <a
+              href="/resume-ankit-mahalle.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all font-medium text-sm"
+            >
+              <Download size={16} />
+              Download Resume
+            </a>
+          </div>
 
           {/* Social links */}
           <div className="flex items-center justify-center gap-4 mb-12">
@@ -61,7 +102,7 @@ const HeroSection = () => {
             <span className="text-xs tracking-widest uppercase mb-2">Scroll</span>
             <ArrowDown size={16} className="animate-bounce" />
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

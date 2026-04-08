@@ -1,3 +1,5 @@
+import AnimatedSection from "./AnimatedSection";
+
 const skillCategories = [
   {
     title: "AI & Generative AI",
@@ -25,31 +27,32 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="section-padding bg-card/50">
       <div className="container">
-        <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
-          <span className="text-primary">02.</span> Skills
-        </h2>
-        <div className="w-16 h-0.5 bg-primary mb-12" />
+        <AnimatedSection>
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-primary">02.</span> Skills
+          </h2>
+          <div className="w-16 h-0.5 bg-primary mb-12" />
+        </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category) => (
-            <div
-              key={category.title}
-              className="p-6 rounded-lg bg-background border border-border hover:glow-border transition-all"
-            >
-              <h3 className="font-heading text-sm font-bold text-primary mb-4 tracking-wide">
-                {category.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1.5 text-xs rounded-md bg-secondary text-secondary-foreground border border-border"
-                  >
-                    {skill}
-                  </span>
-                ))}
+          {skillCategories.map((category, index) => (
+            <AnimatedSection key={category.title} delay={index * 0.08}>
+              <div className="p-6 rounded-lg bg-background border border-border hover:glow-border transition-all h-full">
+                <h3 className="font-heading text-sm font-bold text-primary mb-4 tracking-wide">
+                  {category.title}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1.5 text-xs rounded-md bg-secondary text-secondary-foreground border border-border"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>
